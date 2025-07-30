@@ -14,8 +14,10 @@
 # Test files
 !tests/
 !tests/**
+!.coverage
 
-# PyProject files
+# Poetry files
+!poetry.toml
 !pyproject.toml
 
 # Config files
