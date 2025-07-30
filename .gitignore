@@ -11,10 +11,19 @@
 !source/
 !source/**
 
+# Test files
+!tests/
+!tests/**
+
 # PyProject files
 !pyproject.toml
 
+# Config files
+!.editorconfig
+
 # Docker files
+!.dockerignore
+!compose.yaml
 !Dockerfile
 
 # VS Code files
