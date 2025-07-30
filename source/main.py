@@ -1,13 +1,16 @@
+from contextlib import asynccontextmanager
+
 from dotenv import load_dotenv
 from fastapi import FastAPI
-
-# Environment
-load_dotenv()
+from modules.db.module import DbModule
 
 # Application
 app = FastAPI()
 
 
-@app.get("/tasks")
-async def get_tasks():
-    return {"message": "List of tasks"}
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    load_dotenv()
+    await DbModule.instance().handler.create_pool()
+    yield
+    await DbModule.instance().handler.close_pool()
