@@ -1,7 +1,22 @@
-.pytest_cache
-.venv
-.env
+*
 
-__pycache__
-*.pyc
-*.egg-info
+# Git files
+!.gitignore
+
+# Repo files
+!LICENSE.md
+!README.md
+
+# Source files
+!source/
+!source/**
+
+# PyProject files
+!pyproject.toml
+
+# Docker files
+!Dockerfile
+
+# VS Code files
+!.vscode/
+!.vscode/**

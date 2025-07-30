@@ -7,7 +7,7 @@ from asyncpg import Record
 @dataclass
 class TaskModel:
     task_id: int
-    account_id: str
+    account_id: int
     title: str
     description: str
     is_completed: bool
@@ -18,7 +18,7 @@ class TaskModel:
     def is_valid_model(record: Record) -> bool:
         return (
             isinstance(record.get("task_id"), int)
-            and isinstance(record.get("account_id"), str)
+            and isinstance(record.get("account_id"), int)
             and isinstance(record.get("title"), str)
             and isinstance(record.get("description"), str)
             and isinstance(record.get("is_completed"), bool)

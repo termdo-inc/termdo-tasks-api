@@ -1,11 +1,10 @@
-from dataclasses import dataclass
 from datetime import datetime
 
 from common.models.task_model import TaskModel
+from app.schemas.base_response import BaseResponse
 
 
-@dataclass
-class TasksResponse:
+class TasksResponse(BaseResponse):
     task_id: int
     title: str
     description: str

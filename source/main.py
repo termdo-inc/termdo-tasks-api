@@ -1,16 +1,31 @@
 from contextlib import asynccontextmanager
 
-from dotenv import load_dotenv
 from fastapi import FastAPI
+import uvicorn
 from modules.db.module import DbModule
-
-# Application
-app = FastAPI()
+from app.configs.app_config import AppConfig
+from core.tasks.tasks_builder import tasks_router
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    load_dotenv()
-    await DbModule.instance().handler.create_pool()
+    # Initialize
+    await DbModule.instance().create_pool()
+
+    # App runs
     yield
-    await DbModule.instance().handler.close_pool()
+
+    # Cleanup
+    await DbModule.instance().close_pool()
+
+
+# Application
+app = FastAPI(lifespan=lifespan)
+
+
+# Routers
+app.include_router(tasks_router)
+
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", port=AppConfig.PORT, env_file=".env")

@@ -1,6 +1,8 @@
 from core.tasks.schemas.tasks_request import TasksRequest
 from core.tasks.schemas.tasks_response import TasksResponse
 from core.tasks.tasks_provider import TasksProvider
+from fastapi import HTTPException
+from starlette import status
 
 
 class TasksManager:
@@ -20,19 +22,22 @@ class TasksManager:
     async def get_task(cls, account_id: int, task_id: int) -> TasksResponse:
         task = await cls._provider.get_task(account_id, task_id)
         if task is None:
-            raise ValueError("Task not found")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
         return TasksResponse.from_model(task)
 
     @classmethod
-    async def put_task(cls, account_id: int, task_id: int, task: TasksRequest) -> TasksResponse:
+    async def put_task(cls, account_id: int, task_id: int, req_task: TasksRequest) -> TasksResponse:
+        task = await cls._provider.get_task(account_id, task_id)
+        if task is None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
         updated_task = await cls._provider.update_task(
-            account_id, task_id, task.title, task.description, task.is_completed
+            account_id, task_id, req_task.title, req_task.description, req_task.is_completed
         )
-        if updated_task is None:
-            raise ValueError("Task not found or update failed")
         return TasksResponse.from_model(updated_task)
 
     @classmethod
     async def delete_task(cls, account_id: int, task_id: int) -> None:
-        await cls._provider.delete_task(account_id, task_id)
-        return None
+        task = await cls._provider.get_task(account_id, task_id)
+        if task is None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+        await cls._provider.delete_task(task.account_id, task.task_id)

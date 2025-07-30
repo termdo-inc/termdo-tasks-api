@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["wheel", "setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,12 +7,12 @@ name = "termdo-tasks-api"
 version = "1.0.0"
 description = "Manages task operations including create update delete and retrieval for user todos"
 authors = [{ name = "Emrecan Karaçayır", email = "developer@karacayir.com" }]
-license = { text = "MIT" }
+license = "MIT"
 readme = "README.md"
-dependencies = ["asyncpg", "fastapi[standard]", "python-dotenv"]
+dependencies = ["asyncpg", "fastapi[standard]"]
 
 [project.optional-dependencies]
-dev = ["asyncpg-stubs", "black", "flake8", "pytest", "pytest-cov"]
+dev = ["asyncpg-stubs", "black", "build", "flake8", "pytest", "pytest-cov"]
 
 [project.urls]
 Repository = "https://github.com/termdo-inc/termdo-tasks-api"
