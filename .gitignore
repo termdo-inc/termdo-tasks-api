@@ -16,6 +16,10 @@
 !tests/**
 !.coverage
 
+# Script files
+!scripts/
+!scripts/**
+
 # Poetry files
 !poetry.lock
 !poetry.toml

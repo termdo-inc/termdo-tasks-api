@@ -1,3 +1,5 @@
+# >----------< Project >----------<
+
 [project]
 name = "termdo-tasks-api"
 version = "1.0.0"
@@ -5,35 +7,50 @@ description = "Manages task operations including create update delete and retrie
 authors = [{ name = "Emrecan Karaçayır", email = "developer@karacayir.com" }]
 license = "MIT"
 readme = "README.md"
-requires-python = ">=3.12,<4.0"
-dependencies = [
-  "asyncpg (>=0.30.0,<0.31.0)",
-  "fastapi[standard] (>=0.116.1,<0.117.0)",
-]
 
 [project.urls]
 Repository = "https://github.com/termdo-inc/termdo-tasks-api"
 Issues = "https://github.com/termdo-inc/termdo-tasks-api/issues"
 
+# >----------< Build System >----------<
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+# >----------< Poetry >----------<
+
 [tool.poetry]
 requires-poetry = ">=2.0.0,<3.0.0"
 packages = [{ include = "source/" }]
 
+# >----------< Dependencies >----------<
+
+[tool.poetry.dependencies]
+python = "^3.12"
+asyncpg = "^0.30.0"
+fastapi = "^0.116.1"
+uvicorn = "^0.35.0"
+
 [tool.poetry.group.dev.dependencies]
-asyncpg-stubs = "^0.30.2"
+asyncpg-stubs = "^0.30.0"
 black = "^25.1.0"
 flake8 = "^7.3.0"
+isort = "^6.0.1"
+
+[tool.poetry.group.test.dependencies]
 pytest = "^8.4.1"
 pytest-cov = "^6.2.1"
+
+# >----------< Configurations >----------<
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
 
 [tool.pytest.ini_options]
 testpaths = "tests/"
 pythonpath = "source/"
 addopts = ["--cov=source/", "--cov-report=term-missing"]
-
-[tool.black]
-line-length = 100
-
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"

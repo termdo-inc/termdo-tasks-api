@@ -1,10 +1,10 @@
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
 import uvicorn
-from modules.db.module import DbModule
-from app.configs.app_config import AppConfig
-from core.tasks.tasks_builder import tasks_router
+from fastapi import FastAPI
+from source.app.configs.app_config import AppConfig
+from source.core.tasks.tasks_builder import tasks_router
+from source.modules.db.module import DbModule
 
 
 @asynccontextmanager
@@ -27,5 +27,5 @@ app = FastAPI(lifespan=lifespan)
 app.include_router(tasks_router)
 
 
-if __name__ == "__main__":
-    uvicorn.run("main:app", port=AppConfig.PORT, env_file=".env")
+def main():
+    uvicorn.run("source.main:app", port=AppConfig.PORT)

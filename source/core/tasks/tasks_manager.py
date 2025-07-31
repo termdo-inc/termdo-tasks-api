@@ -1,8 +1,9 @@
-from core.tasks.schemas.tasks_request import TasksRequest
-from core.tasks.schemas.tasks_response import TasksResponse
-from core.tasks.tasks_provider import TasksProvider
 from fastapi import HTTPException
 from starlette import status
+
+from source.core.tasks.schemas.tasks_request import TasksRequest
+from source.core.tasks.schemas.tasks_response import TasksResponse
+from source.core.tasks.tasks_provider import TasksProvider
 
 
 class TasksManager:

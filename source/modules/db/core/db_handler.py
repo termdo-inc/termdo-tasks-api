@@ -1,5 +1,6 @@
-from app.configs.db_config import DbConfig
 from asyncpg.pool import Pool, PoolConnectionProxy, create_pool
+
+from source.app.configs.db_config import DbConfig
 
 
 class DbHandler:

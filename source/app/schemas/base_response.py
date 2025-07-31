@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from app.configs.app_config import AppConfig
+from source.app.configs.app_config import AppConfig
 
 
 class BaseResponse(BaseModel):

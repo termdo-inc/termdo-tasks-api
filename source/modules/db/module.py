@@ -1,4 +1,4 @@
-from modules.db.core.db_handler import DbHandler
+from source.modules.db.core.db_handler import DbHandler
 
 
 class DbModule:

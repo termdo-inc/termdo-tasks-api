@@ -1,9 +1,10 @@
-from app.constants.db_constants import DbConstants
 from asyncpg import DataError
 from asyncpg.pool import PoolConnectionProxy
-from common.models.task_model import TaskModel
-from common.queries.task_queries import TaskQueries
-from modules.db.module import DbModule
+
+from source.app.constants.db_constants import DbConstants
+from source.common.models.task_model import TaskModel
+from source.common.queries.task_queries import TaskQueries
+from source.modules.db.module import DbModule
 
 
 class TasksProvider:
