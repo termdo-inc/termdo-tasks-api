@@ -1,38 +1,46 @@
 *
 
-# Git files
+# >-----< INCLUDES >-----< #
+
+# [+]: Git files
 !.gitignore
 
-# Repo files
+# [+]: Repo files
 !LICENSE.md
 !README.md
 
-# Source files
+# [+]: Source files
 !source/
 !source/**
 
-# Test files
+# [+]: Test files
 !tests/
 !tests/**
 !.coverage
 
-# Script files
+# [+]: Script files
 !scripts/
 !scripts/**
 
-# Poetry files
+# [+]: Poetry files
 !poetry.lock
 !poetry.toml
 !pyproject.toml
 
-# Config files
+# [+]: Config files
 !.editorconfig
 
-# Docker files
+# [+]: Docker files
 !.dockerignore
 !compose.yaml
 !Dockerfile
 
-# VS Code files
+# [+]: Editor files
 !.vscode/
 !.vscode/**
+
+# >-----< EXCLUDES >-----< #
+
+# [-]: Cache files
+source/__pycache__/
+source/**/__pycache__/
