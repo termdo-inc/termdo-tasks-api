@@ -17,6 +17,7 @@
 !.coverage
 
 # Poetry files
+!poetry.lock
 !poetry.toml
 !pyproject.toml
 

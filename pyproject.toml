@@ -5,7 +5,7 @@ description = "Manages task operations including create update delete and retrie
 authors = [{ name = "Emrecan Karaçayır", email = "developer@karacayir.com" }]
 license = "MIT"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12,<4.0"
 dependencies = [
   "asyncpg (>=0.30.0,<0.31.0)",
   "fastapi[standard] (>=0.116.1,<0.117.0)",
@@ -17,7 +17,7 @@ Issues = "https://github.com/termdo-inc/termdo-tasks-api/issues"
 
 [tool.poetry]
 requires-poetry = ">=2.0.0,<3.0.0"
-packages = [{ include = "source/", from = "source/" }]
+packages = [{ include = "source/" }]
 
 [tool.poetry.group.dev.dependencies]
 asyncpg-stubs = "^0.30.2"
