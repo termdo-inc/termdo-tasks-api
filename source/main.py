@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 
 import uvicorn
 from fastapi import FastAPI
+
 from source.app.configs.app_config import AppConfig
 from source.core.tasks.tasks_builder import tasks_router
 from source.modules.db.module import DbModule

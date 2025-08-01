@@ -24,7 +24,9 @@ async def post_task(
     return await _manager.post_task(account_id, task)
 
 
-@tasks_router.get("/accounts/{account_id}/tasks/{task_id}", status_code=status.HTTP_200_OK)
+@tasks_router.get(
+    "/accounts/{account_id}/tasks/{task_id}", status_code=status.HTTP_200_OK
+)
 async def get_task(
     account_id: int = Path(gt=0),
     task_id: int = Path(gt=0),
@@ -32,7 +34,9 @@ async def get_task(
     return await _manager.get_task(account_id, task_id)
 
 
-@tasks_router.put("/accounts/{account_id}/tasks/{task_id}", status_code=status.HTTP_200_OK)
+@tasks_router.put(
+    "/accounts/{account_id}/tasks/{task_id}", status_code=status.HTTP_200_OK
+)
 async def put_task(
     account_id: int = Path(gt=0),
     task_id: int = Path(gt=0),

@@ -16,23 +16,35 @@ class TasksManager:
 
     @classmethod
     async def post_task(cls, account_id: int, task: TasksRequest) -> TasksResponse:
-        task_model = await cls._provider.insert_task(account_id, task.title, task.description)
+        task_model = await cls._provider.insert_task(
+            account_id, task.title, task.description
+        )
         return TasksResponse.from_model(task_model)
 
     @classmethod
     async def get_task(cls, account_id: int, task_id: int) -> TasksResponse:
         task = await cls._provider.get_task(account_id, task_id)
         if task is None:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail="Task not found"
+            )
         return TasksResponse.from_model(task)
 
     @classmethod
-    async def put_task(cls, account_id: int, task_id: int, req_task: TasksRequest) -> TasksResponse:
+    async def put_task(
+        cls, account_id: int, task_id: int, req_task: TasksRequest
+    ) -> TasksResponse:
         task = await cls._provider.get_task(account_id, task_id)
         if task is None:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail="Task not found"
+            )
         updated_task = await cls._provider.update_task(
-            account_id, task_id, req_task.title, req_task.description, req_task.is_completed
+            account_id,
+            task_id,
+            req_task.title,
+            req_task.description,
+            req_task.is_completed,
         )
         return TasksResponse.from_model(updated_task)
 
@@ -40,5 +52,7 @@ class TasksManager:
     async def delete_task(cls, account_id: int, task_id: int) -> None:
         task = await cls._provider.get_task(account_id, task_id)
         if task is None:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail="Task not found"
+            )
         await cls._provider.delete_task(task.account_id, task.task_id)

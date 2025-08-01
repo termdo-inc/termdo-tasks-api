@@ -19,12 +19,16 @@ class DbHandler:
 
     async def get_client(self) -> PoolConnectionProxy:
         if self._db_pool is None:
-            raise RuntimeError("Database pool is not created. Call create_pool() first.")
+            raise RuntimeError(
+                "Database pool is not created. Call create_pool() first."
+            )
         return await self._db_pool.acquire()
 
     async def release_client(self, client: PoolConnectionProxy) -> None:
         if self._db_pool is None:
-            raise RuntimeError("Database pool is not created. Call create_pool() first.")
+            raise RuntimeError(
+                "Database pool is not created. Call create_pool() first."
+            )
         await self._db_pool.release(client)
 
     async def close_pool(self) -> None:

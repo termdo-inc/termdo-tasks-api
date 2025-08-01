@@ -32,7 +32,9 @@ class TasksProvider:
         try:
             client = await DbModule.instance().get_client()
             await client.execute(DbConstants.BEGIN)
-            result = await client.fetchrow(TaskQueries.GET_TASK_1AID_2TID, account_id, task_id)
+            result = await client.fetchrow(
+                TaskQueries.GET_TASK_1AID_2TID, account_id, task_id
+            )
             if result is None:
                 return None
             task = TaskModel.from_record(result)
@@ -47,7 +49,9 @@ class TasksProvider:
                 await DbModule.instance().release_client(client)
 
     @classmethod
-    async def insert_task(cls, account_id: int, title: str, description: str) -> TaskModel:
+    async def insert_task(
+        cls, account_id: int, title: str, description: str
+    ) -> TaskModel:
         client: PoolConnectionProxy | None = None
         try:
             client = await DbModule.instance().get_client()
@@ -73,7 +77,12 @@ class TasksProvider:
 
     @classmethod
     async def update_task(
-        cls, account_id: int, task_id: int, title: str, description: str, is_completed: bool
+        cls,
+        account_id: int,
+        task_id: int,
+        title: str,
+        description: str,
+        is_completed: bool,
     ) -> TaskModel:
         client: PoolConnectionProxy | None = None
         try:

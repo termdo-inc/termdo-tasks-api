@@ -44,9 +44,6 @@ pytest-cov = "^6.2.1"
 
 # >----------< Configurations >----------<
 
-[tool.black]
-line-length = 100
-
 [tool.isort]
 profile = "black"
 
