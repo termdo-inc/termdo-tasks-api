@@ -21,6 +21,7 @@
 # [+]: Script files
 !scripts/
 !scripts/**
+!Makefile
 
 # [+]: Poetry files
 !poetry.lock

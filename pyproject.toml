@@ -1,4 +1,4 @@
-# >----------< Project >----------<
+# >----------< PROJECT >----------<
 
 [project]
 name = "termdo-tasks-api"
@@ -12,25 +12,26 @@ readme = "README.md"
 Repository = "https://github.com/termdo-inc/termdo-tasks-api"
 Issues = "https://github.com/termdo-inc/termdo-tasks-api/issues"
 
-# >----------< Build System >----------<
+# >----------< BUILD SYSTEM >----------<
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-# >----------< Poetry >----------<
+# >----------< POETRY >----------<
 
 [tool.poetry]
 requires-poetry = ">=2.0.0,<3.0.0"
 packages = [{ include = "source/" }]
 
-# >----------< Dependencies >----------<
+# >----------< DEPENDENCIES >----------<
 
 [tool.poetry.dependencies]
 python = "^3.12"
 asyncpg = "^0.30.0"
 fastapi = "^0.116.1"
 uvicorn = "^0.35.0"
+python-dotenv = "^1.1.1"
 
 [tool.poetry.group.dev.dependencies]
 asyncpg-stubs = "^0.30.0"
@@ -42,7 +43,7 @@ isort = "^6.0.1"
 pytest = "^8.4.1"
 pytest-cov = "^6.2.1"
 
-# >----------< Configurations >----------<
+# >----------< CONFIGS >----------<
 
 [tool.isort]
 profile = "black"

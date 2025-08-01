@@ -1,3 +1,4 @@
+import sys
 from contextlib import asynccontextmanager
 
 import uvicorn
@@ -29,4 +30,19 @@ app.include_router(tasks_router)
 
 
 def main():
-    uvicorn.run("source.main:app", port=AppConfig.PORT)
+    if "--dev" in sys.argv:
+        AppConfig.DEV = True
+
+    mode = "DEV" if AppConfig.DEV else "PROD"
+    banner = f"\n=== 🚀 Starting in {mode} mode 🚀 ===\n"
+
+    print(banner)
+
+    if AppConfig.DEV:
+        uvicorn.run("source.main:app", env_file=".env", port=AppConfig.PORT)
+    else:
+        uvicorn.run("source.main:app", port=AppConfig.PORT)
+
+
+if __name__ == "__main__":
+    main()
