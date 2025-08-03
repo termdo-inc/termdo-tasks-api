@@ -1,6 +1,5 @@
 from asyncpg.pool import Pool, PoolConnectionProxy, create_pool
-
-from source.app.configs.db_config import DbConfig
+from termdo_tasks_api.app.configs.db_config import DbConfig
 
 
 class DbHandler:
@@ -14,20 +13,20 @@ class DbHandler:
                 port=DbConfig.PORT,
                 user=DbConfig.USER,
                 password=DbConfig.PASSWORD,
-                database=DbConfig.DATABASE,
+                database=DbConfig.NAME,
             )
 
     async def get_client(self) -> PoolConnectionProxy:
         if self._db_pool is None:
             raise RuntimeError(
-                "Database pool is not created. Call create_pool() first."
+                "Database pool is not created. Call create_pool() first!"
             )
         return await self._db_pool.acquire()
 
     async def release_client(self, client: PoolConnectionProxy) -> None:
         if self._db_pool is None:
             raise RuntimeError(
-                "Database pool is not created. Call create_pool() first."
+                "Database pool is not created. Call create_pool() first!"
             )
         await self._db_pool.release(client)
 
@@ -36,4 +35,4 @@ class DbHandler:
             await self._db_pool.close()
             self._db_pool = None
         else:
-            raise RuntimeError("Database pool is not created or already closed.")
+            raise RuntimeError("Pool can't be closed!")

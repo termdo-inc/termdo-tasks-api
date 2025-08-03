@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from source.app.schemas.base_response import BaseResponse
-from source.common.models.task_model import TaskModel
+from termdo_tasks_api.app.schemas.base_response import BaseResponse
+from termdo_tasks_api.common.models.task_model import TaskModel
 
 
 class TasksResponse(BaseResponse):

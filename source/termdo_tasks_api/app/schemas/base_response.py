@@ -1,6 +1,5 @@
 from pydantic import BaseModel
-
-from source.app.configs.app_config import AppConfig
+from termdo_tasks_api.app.configs.app_config import AppConfig
 
 
 class BaseResponse(BaseModel):

@@ -1,11 +1,11 @@
-from source.modules.db.core.db_handler import DbHandler
+from termdo_tasks_api.modules.db.core.db_handler import DbHandler
 
 
 class DbModule:
     _instance: "DbModule | None" = None
 
     @staticmethod
-    def instance() -> "DbModule":
+    def get() -> "DbModule":
         if DbModule._instance is None:
             DbModule._instance = DbModule()
         return DbModule._instance

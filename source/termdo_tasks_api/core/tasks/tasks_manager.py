@@ -1,9 +1,8 @@
 from fastapi import HTTPException
 from starlette import status
-
-from source.core.tasks.schemas.tasks_request import TasksRequest
-from source.core.tasks.schemas.tasks_response import TasksResponse
-from source.core.tasks.tasks_provider import TasksProvider
+from termdo_tasks_api.core.tasks.schemas.tasks_request import TasksRequest
+from termdo_tasks_api.core.tasks.schemas.tasks_response import TasksResponse
+from termdo_tasks_api.core.tasks.tasks_provider import TasksProvider
 
 
 class TasksManager:
@@ -15,7 +14,9 @@ class TasksManager:
         return TasksResponse.from_models(tasks)
 
     @classmethod
-    async def post_task(cls, account_id: int, task: TasksRequest) -> TasksResponse:
+    async def post_task(
+        cls, account_id: int, task: TasksRequest
+    ) -> TasksResponse:
         task_model = await cls._provider.insert_task(
             account_id, task.title, task.description
         )

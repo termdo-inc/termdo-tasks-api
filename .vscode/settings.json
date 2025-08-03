@@ -1,6 +1,0 @@
-{
-  "python.testing.pytestArgs": ["tests", "--cov=source", "--cov-report=term-missing"],
-  "python.testing.unittestEnabled": false,
-  "python.analysis.enablePytestSupport": true,
-  "python.testing.pytestEnabled": true
-}

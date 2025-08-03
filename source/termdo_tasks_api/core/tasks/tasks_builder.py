@@ -1,22 +1,25 @@
 from fastapi import APIRouter, Body, Path
 from starlette import status
-
-from source.core.tasks.schemas.tasks_request import TasksRequest
-from source.core.tasks.schemas.tasks_response import TasksResponse
-from source.core.tasks.tasks_manager import TasksManager
+from termdo_tasks_api.core.tasks.schemas.tasks_request import TasksRequest
+from termdo_tasks_api.core.tasks.schemas.tasks_response import TasksResponse
+from termdo_tasks_api.core.tasks.tasks_manager import TasksManager
 
 tasks_router = APIRouter()
 _manager = TasksManager()
 
 
-@tasks_router.get("/accounts/{account_id}/tasks", status_code=status.HTTP_200_OK)
+@tasks_router.get(
+    "/accounts/{account_id}/tasks", status_code=status.HTTP_200_OK
+)
 async def get_tasks(
     account_id: int = Path(gt=0),
 ) -> list[TasksResponse]:
     return await _manager.get_tasks(account_id)
 
 
-@tasks_router.post("/accounts/{account_id}/tasks", status_code=status.HTTP_201_CREATED)
+@tasks_router.post(
+    "/accounts/{account_id}/tasks", status_code=status.HTTP_201_CREATED
+)
 async def post_task(
     account_id: int = Path(gt=0),
     task: TasksRequest = Body(),
@@ -46,7 +49,8 @@ async def put_task(
 
 
 @tasks_router.delete(
-    "/accounts/{account_id}/tasks/{task_id}", status_code=status.HTTP_204_NO_CONTENT
+    "/accounts/{account_id}/tasks/{task_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
 )
 async def delete_task(
     account_id: int = Path(gt=0),

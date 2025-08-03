@@ -36,12 +36,12 @@
 !compose.yaml
 !Dockerfile
 
-# [+]: Editor files
-!.vscode/
-!.vscode/**
-
 # >-----< EXCLUDES >-----< #
 
 # [-]: Cache files
 source/__pycache__/
 source/**/__pycache__/
+
+# [-]: macOS files
+.DS_Store
+**/.DS_Store

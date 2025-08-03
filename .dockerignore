@@ -1,0 +1,18 @@
+*
+
+# >-----< INCLUDES >-----< #
+
+# [+]: Build stage
+!source/
+!source/**
+!poetry.lock
+!poetry.toml
+!pyproject.toml
+
+# [+]: Run stage
+
+# >-----< EXCLUDES >-----< #
+
+# [-]: MacOS files
+.DS_Store
+**/.DS_Store

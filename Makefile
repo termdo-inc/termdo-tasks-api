@@ -17,8 +17,5 @@ format:
 lint:
 	$(PYTHON) -m flake8 source/
 
-build:
-	poetry build --output=out/ --format=wheel
-
-dev:
-	$(PYTHON) source/main.py -- --dev
+run:
+	$(PYTHON) -m termdo_tasks_api.main --dev

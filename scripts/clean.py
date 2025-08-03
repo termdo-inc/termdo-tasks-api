@@ -1,6 +1,9 @@
 import os
 import shutil
 
+# Remove out folder
+shutil.rmtree("out", ignore_errors=True)
+
 # Remove .pytest_cache folder
 shutil.rmtree(".pytest_cache", ignore_errors=True)
 
