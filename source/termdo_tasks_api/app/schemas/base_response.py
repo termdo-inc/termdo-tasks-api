@@ -1,12 +1,8 @@
 from pydantic import BaseModel
-
-
-def _to_camel_case(string: str) -> str:
-    parts = string.split("_")
-    return parts[0] + "".join(part.title() for part in parts[1:])
+from termdo_tasks_api.app.utils.string_utils import to_camel_case
 
 
 class BaseResponse(BaseModel):
     model_config = {
-        "alias_generator": _to_camel_case,
+        "alias_generator": to_camel_case,
     }

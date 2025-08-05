@@ -14,5 +14,5 @@ class HeaderMiddleware(BaseHTTPMiddleware):
         response: Response = await call_next(request)
 
         # Add custom header with host name
-        response.headers[HeaderConstants.HOST_NAME_KEY] = AppConfig.HOST_NAME
+        response.headers[HeaderConstants.HOSTNAME_KEY] = AppConfig.HOST_NAME
         return response

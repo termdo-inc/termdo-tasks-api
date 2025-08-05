@@ -1,2 +1,2 @@
 class HeaderConstants:
-    HOST_NAME_KEY: str = "X-Host-Name"
+    HOSTNAME_KEY: str = "X-Hostname"
