@@ -1,6 +1,12 @@
 from pydantic import BaseModel
-from termdo_tasks_api.app.configs.app_config import AppConfig
+
+
+def _to_camel_case(string: str) -> str:
+    parts = string.split("_")
+    return parts[0] + "".join(part.title() for part in parts[1:])
 
 
 class BaseResponse(BaseModel):
-    host: str = AppConfig.HOST
+    model_config = {
+        "alias_generator": _to_camel_case,
+    }

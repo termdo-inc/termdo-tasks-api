@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from termdo_tasks_api.app.configs.app_config import AppConfig
 from termdo_tasks_api.app.configs.db_config import DbConfig
+from termdo_tasks_api.app.middlewares.header_middleware import HeaderMiddleware
 from termdo_tasks_api.core.tasks.tasks_builder import tasks_router
 from termdo_tasks_api.modules.db.module import DbModule
 
@@ -25,6 +26,8 @@ async def lifespan(_: FastAPI):
 # Application
 app = FastAPI(lifespan=lifespan)
 
+# Middlewares
+app.add_middleware(HeaderMiddleware)
 
 # Routers
 app.include_router(tasks_router)

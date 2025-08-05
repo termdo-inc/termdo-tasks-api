@@ -2,7 +2,7 @@ import os
 
 
 class AppConfig:
-    HOST: str = os.uname().nodename
+    HOST_NAME: str = os.uname().nodename
     PORT: int
 
     @classmethod
