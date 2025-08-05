@@ -31,6 +31,7 @@ RUN \
   poetry self add poetry-plugin-export
 
 # >-----< BUILD STAGE >-----< #
+
 FROM poetry AS builder
 
 WORKDIR /app/
@@ -48,6 +49,7 @@ RUN \
   rm requirements.txt
 
 # >-----< RUN STAGE >-----< #
+
 FROM base AS runner
 
 USER appuser
