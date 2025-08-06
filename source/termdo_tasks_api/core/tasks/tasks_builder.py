@@ -11,6 +11,7 @@ tasks_router = APIRouter()
 _manager = TasksManager()
 
 
+@tasks_router.get("/{account_id}", status_code=status.HTTP_200_OK)
 @tasks_router.get("/{account_id}/", status_code=status.HTTP_200_OK)
 async def get_tasks(
     account_id: Annotated[int, Path(gt=0)],
@@ -20,6 +21,7 @@ async def get_tasks(
     )
 
 
+@tasks_router.post("/{account_id}", status_code=status.HTTP_201_CREATED)
 @tasks_router.post("/{account_id}/", status_code=status.HTTP_201_CREATED)
 async def post_task(
     account_id: Annotated[int, Path(gt=0)],
@@ -30,6 +32,7 @@ async def post_task(
     )
 
 
+@tasks_router.get("/{account_id}/{task_id}", status_code=status.HTTP_200_OK)
 @tasks_router.get("/{account_id}/{task_id}/", status_code=status.HTTP_200_OK)
 async def get_task(
     account_id: Annotated[int, Path(gt=0)],
@@ -40,6 +43,7 @@ async def get_task(
     )
 
 
+@tasks_router.put("/{account_id}/{task_id}", status_code=status.HTTP_200_OK)
 @tasks_router.put("/{account_id}/{task_id}/", status_code=status.HTTP_200_OK)
 async def put_task(
     account_id: Annotated[int, Path(gt=0)],
@@ -51,6 +55,7 @@ async def put_task(
     )
 
 
+@tasks_router.delete("/{account_id}/{task_id}", status_code=status.HTTP_200_OK)
 @tasks_router.delete("/{account_id}/{task_id}/", status_code=status.HTTP_200_OK)
 async def delete_task(
     account_id: Annotated[int, Path(gt=0)],
