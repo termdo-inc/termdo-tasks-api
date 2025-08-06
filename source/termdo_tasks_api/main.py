@@ -24,7 +24,7 @@ async def lifespan(_: FastAPI):
 
 
 # Application
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, redirect_slashes=False)
 
 # Middlewares
 app.add_middleware(HeaderMiddleware)
@@ -40,7 +40,9 @@ def main():
     AppConfig.load()
     DbConfig.load()
 
-    uvicorn.run("termdo_tasks_api.main:app", port=AppConfig.PORT)
+    uvicorn.run(
+        "termdo_tasks_api.main:app", host="0.0.0.0", port=AppConfig.PORT
+    )
 
 
 if __name__ == "__main__":

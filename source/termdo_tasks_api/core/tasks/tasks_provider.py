@@ -13,7 +13,9 @@ class TasksProvider:
         try:
             client = await DbModule.get().get_client()
             await client.execute(DbConstants.BEGIN)
-            result = await client.fetch(TaskQueries.GET_TASKS_1AID, account_id)
+            result = await client.fetch(
+                TaskQueries.GET_TASKS_1AID.value, account_id
+            )
             tasks = TaskModel.from_records(result)
             await client.execute(DbConstants.COMMIT)
             return tasks
@@ -32,7 +34,7 @@ class TasksProvider:
             client = await DbModule.get().get_client()
             await client.execute(DbConstants.BEGIN)
             result = await client.fetchrow(
-                TaskQueries.GET_TASK_1AID_2TID, account_id, task_id
+                TaskQueries.GET_TASK_1AID_2TID.value, account_id, task_id
             )
             if result is None:
                 return None
@@ -56,7 +58,7 @@ class TasksProvider:
             client = await DbModule.get().get_client()
             await client.execute(DbConstants.BEGIN)
             result = await client.fetchrow(
-                TaskQueries.INSERT_TASK_RT_1AID_2TITLE_3DESC,
+                TaskQueries.INSERT_TASK_RT_1AID_2TITLE_3DESC.value,
                 account_id,
                 title,
                 description,
@@ -88,7 +90,7 @@ class TasksProvider:
             client = await DbModule.get().get_client()
             await client.execute(DbConstants.BEGIN)
             result = await client.fetchrow(
-                TaskQueries.UPDATE_TASK_RT_1AID_2TID_3TITLE_4DESC_5ISCMP,
+                TaskQueries.UPDATE_TASK_RT_1AID_2TID_3TITLE_4DESC_5ISCMP.value,
                 account_id,
                 task_id,
                 title,
@@ -115,7 +117,7 @@ class TasksProvider:
             client = await DbModule.get().get_client()
             await client.execute(DbConstants.BEGIN)
             await client.execute(
-                TaskQueries.DELETE_TASK_1AID_2TID, account_id, task_id
+                TaskQueries.DELETE_TASK_1AID_2TID.value, account_id, task_id
             )
             await client.execute(DbConstants.COMMIT)
         except Exception as e:

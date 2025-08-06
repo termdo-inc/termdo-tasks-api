@@ -1,10 +1,10 @@
 from datetime import datetime
 
-from termdo_tasks_api.app.schemas.base_response import BaseResponse
+from pydantic import BaseModel
 from termdo_tasks_api.common.models.task_model import TaskModel
 
 
-class TasksResponse(BaseResponse):
+class TasksResponse(BaseModel):
     task_id: int
     title: str
     description: str

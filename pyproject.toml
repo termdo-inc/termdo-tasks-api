@@ -36,6 +36,7 @@ uvicorn = "^0.35.0"
 asyncpg-stubs = "^0.30.0"
 black = "^25.1.0"
 flake8 = "^7.3.0"
+flake8-pyproject = "^1.2.3"
 isort = "^6.0.1"
 
 [tool.poetry.group.test.dependencies]
@@ -49,6 +50,9 @@ line-length = 80
 
 [tool.isort]
 profile = "black"
+
+[tool.flake8]
+max-line-length = 80
 
 [tool.pytest.ini_options]
 testpaths = "tests/"
