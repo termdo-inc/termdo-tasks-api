@@ -52,15 +52,14 @@ RUN \
 
 FROM base AS runner
 
-USER appuser
-
 WORKDIR /app/
 
 COPY --from=builder --chown=appuser:appgroup /app/out/ out/
 
 RUN \
-  python -m venv .venv && \
   pip install out/*.whl && \
   rm -rf out/
+
+USER appuser
 
 ENTRYPOINT ["python", "-m", "termdo_tasks_api.main"]

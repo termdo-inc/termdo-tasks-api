@@ -13,6 +13,5 @@ class DbModule:
     def __init__(self):
         self._handler = DbHandler()
         self.create_pool = self._handler.create_pool
-        self.get_client = self._handler.get_client
-        self.release_client = self._handler.release_client
+        self.get_connection = self._handler.get_connection
         self.close_pool = self._handler.close_pool

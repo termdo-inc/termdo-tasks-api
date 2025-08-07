@@ -1,3 +1,5 @@
+from contextlib import asynccontextmanager
+
 from asyncpg.pool import Pool, PoolConnectionProxy, create_pool
 from termdo_tasks_api.app.configs.db_config import DbConfig
 
@@ -16,19 +18,17 @@ class DbHandler:
                 database=DbConfig.NAME,
             )
 
-    async def get_client(self) -> PoolConnectionProxy:
+    @asynccontextmanager
+    async def get_connection(self):
         if self._db_pool is None:
             raise RuntimeError(
                 "Database pool is not created. Call create_pool() first!"
             )
-        return await self._db_pool.acquire()
-
-    async def release_client(self, client: PoolConnectionProxy) -> None:
-        if self._db_pool is None:
-            raise RuntimeError(
-                "Database pool is not created. Call create_pool() first!"
-            )
-        await self._db_pool.release(client)
+        conn = await self._db_pool.acquire()
+        try:
+            yield conn
+        finally:
+            await self._db_pool.release(conn)
 
     async def close_pool(self) -> None:
         if self._db_pool:
