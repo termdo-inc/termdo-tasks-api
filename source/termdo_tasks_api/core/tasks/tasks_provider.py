@@ -1,6 +1,6 @@
 from asyncpg import DataError
 from termdo_tasks_api.common.models.task_model import TaskModel
-from termdo_tasks_api.common.queries.task_queries import TaskQueries
+from termdo_tasks_api.common.queries import task_queries
 from termdo_tasks_api.modules.db.module import DbModule
 
 
@@ -10,7 +10,7 @@ class TasksProvider:
         async with DbModule.get().get_connection() as conn:
             async with conn.transaction():
                 result = await conn.fetch(
-                    TaskQueries.GET_TASKS_1AID, account_id
+                    task_queries.GET_TASKS_1AID, account_id
                 )
                 return TaskModel.from_records(result)
 
@@ -19,7 +19,7 @@ class TasksProvider:
         async with DbModule.get().get_connection() as conn:
             async with conn.transaction():
                 result = await conn.fetchrow(
-                    TaskQueries.GET_TASK_1AID_2TID, account_id, task_id
+                    task_queries.GET_TASK_1AID_2TID, account_id, task_id
                 )
                 if result is None:
                     return None
@@ -32,7 +32,7 @@ class TasksProvider:
         async with DbModule.get().get_connection() as conn:
             async with conn.transaction():
                 result = await conn.fetchrow(
-                    TaskQueries.INSERT_TASK_RT_1AID_2TITLE_3DESC,
+                    task_queries.INSERT_TASK_RT_1AID_2TITLE_3DESC,
                     account_id,
                     title,
                     description,
@@ -53,7 +53,7 @@ class TasksProvider:
         async with DbModule.get().get_connection() as conn:
             async with conn.transaction():
                 result = await conn.fetchrow(
-                    TaskQueries.UPDATE_TASK_RT_1AID_2TID_3TITLE_4DESC_5ISCMP,
+                    task_queries.UPDATE_TASK_RT_1AID_2TID_3TITLE_4DESC_5ISCMP,
                     account_id,
                     task_id,
                     title,
@@ -69,5 +69,5 @@ class TasksProvider:
         async with DbModule.get().get_connection() as conn:
             async with conn.transaction():
                 await conn.execute(
-                    TaskQueries.DELETE_TASK_1AID_2TID, account_id, task_id
+                    task_queries.DELETE_TASK_1AID_2TID, account_id, task_id
                 )

@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 
-from asyncpg.pool import Pool, PoolConnectionProxy, create_pool
+from asyncpg.pool import Pool, create_pool
 from termdo_tasks_api.app.configs.db_config import DbConfig
 
 
