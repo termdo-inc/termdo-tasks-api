@@ -40,9 +40,7 @@ def main():
     AppConfig.load()
     DbConfig.load()
 
-    uvicorn.run(
-        "termdo_tasks_api.main:app", host="0.0.0.0", port=AppConfig.PORT
-    )
+    uvicorn.run(app, host="0.0.0.0", port=AppConfig.PORT, server_header=False)
 
 
 if __name__ == "__main__":
