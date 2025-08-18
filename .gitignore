@@ -31,6 +31,9 @@
 # [+]: Config files
 !.editorconfig
 
+# [+]: Environment files
+!.env.example
+
 # [+]: Docker files
 !.dockerignore
 !compose.yaml
