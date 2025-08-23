@@ -27,15 +27,16 @@ class TasksProvider:
 
     @classmethod
     async def insert_task(
-        cls, account_id: int, title: str, description: str
+        cls, account_id: int, title: str, description: str, is_completed: bool
     ) -> TaskModel:
         async with DbModule.get().get_connection() as conn:
             async with conn.transaction():
                 result = await conn.fetchrow(
-                    task_queries.INSERT_TASK_RT_1AID_2TITLE_3DESC,
+                    task_queries.INSERT_TASK_RT_1AID_2TITLE_3DESC_4ISCMP,
                     account_id,
                     title,
                     description,
+                    is_completed,
                 )
                 if result is None:
                     raise DataError("Failed to insert task")

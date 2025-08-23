@@ -4,9 +4,9 @@ GET_TASK_1AID_2TID = (
     """SELECT * FROM task WHERE account_id = $1 AND task_id = $2"""
 )
 
-INSERT_TASK_RT_1AID_2TITLE_3DESC = """
-    INSERT INTO task (account_id, title, description)
-    VALUES ($1, $2, $3)
+INSERT_TASK_RT_1AID_2TITLE_3DESC_4ISCMP = """
+    INSERT INTO task (account_id, title, description, is_completed)
+    VALUES ($1, $2, $3, $4)
     RETURNING *
 """
 

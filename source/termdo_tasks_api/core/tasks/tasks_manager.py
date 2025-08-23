@@ -18,7 +18,7 @@ class TasksManager:
         cls, account_id: int, task: TasksRequest
     ) -> TasksResponse:
         task_model = await cls._provider.insert_task(
-            account_id, task.title, task.description
+            account_id, task.title, task.description, task.is_completed
         )
         return TasksResponse.from_model(task_model)
 
