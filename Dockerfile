@@ -48,6 +48,12 @@ RUN \
   poetry build --no-interaction --no-cache --format=wheel --output=out/ && \
   rm requirements.txt
 
+# >-----< TEST STAGE >-----< #
+
+FROM builder AS tester
+
+RUN echo "[🔵]: No tests defined."
+
 # >-----< RUN STAGE >-----< #
 
 FROM base AS runner

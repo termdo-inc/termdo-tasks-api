@@ -9,6 +9,8 @@
 !poetry.toml
 !pyproject.toml
 
+# [+]: Test stage
+
 # [+]: Run stage
 
 # >-----< EXCLUDES >-----< #
